@@ -1,0 +1,13 @@
+.footer {
+  background-color: #b71c1c;
+  color: #fff;
+  padding: 20px 10px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}

@@ -1,0 +1,125 @@
+/* Container and page spacing */
+main.content {
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 80vh;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Page heading */
+main.content h2 {
+  margin-bottom: 20px;
+  color: #c62828; /* matching your brand red */
+}
+
+/* Add Blood Group form */
+form {
+  margin-bottom: 30px;
+}
+
+form input[type="text"] {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  width: 250px;
+  transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus {
+  border-color: #c62828;
+  outline: none;
+}
+
+form button {
+  background-color: #c62828;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #b71c1c;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table th, table td {
+  padding: 15px 20px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+}
+
+table th {
+  background-color: #c62828;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+table tr:hover {
+  background-color: #faf2f2;
+}
+
+/* Delete button inside table */
+table button {
+  background-color: #e53935;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+table button:hover {
+  background-color: #b71c1c;
+}
+
+/* Scrollable table */
+.scroll-table {
+  max-height: 500px;
+  overflow-y: auto;
+  display: block;
+  border: 1px solid #ccc;
+}
+
+.scroll-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  form input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  form button {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  table th, table td {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+}

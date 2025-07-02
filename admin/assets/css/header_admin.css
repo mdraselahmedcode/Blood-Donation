@@ -1,0 +1,49 @@
+.navbar {
+    position: sticky;        /* Makes the header stick to the top */
+    top: 0;                  /* Stick at the very top */
+    z-index: 1000;           /* Keeps it above other elements */
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 30px;
+    background-color: #c62828;
+    color: white;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow on scroll */
+}
+
+
+.logo{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.nav-links a{
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-links a:hover{
+    text-decoration: underline;
+}
+
+.cta-button{
+    background-color: #ffffff;
+    color: #c62828;
+    border: none;
+    padding: 10px 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cta-button:hover{
+    background-color: #fddede;
+}
+
+
