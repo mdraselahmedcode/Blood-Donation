@@ -24,7 +24,7 @@ require_once __DIR__ . '/../../config/config.php';
 <body>
 
     <header class="navbar">
-        <div class="logo">BloodCare<?= isset($_SESSION['admin_logged_in']) ? ' Admin' : '' ?></div>
+        <div class="logo" ><?= isset($_SESSION['admin_logged_in']) ? ' ' : 'BloodCare' ?></div>
 
         <nav class="nav-links">
             <?php if (isset($_SESSION['admin_logged_in'])): ?>

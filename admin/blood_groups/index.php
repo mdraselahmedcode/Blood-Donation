@@ -34,6 +34,22 @@ if ($result) {
       ← Back
     </a>
 
+    <!-- Sliding showMessage div -->
+    <div id="showMessage" style="
+        display:none;
+        position: fixed;
+        top: 90px;
+        left: 56%;
+        transform: translateX(-56%);
+        background-color: #e8f5e9;
+        color: green;
+        padding: 12px 25px;
+        border-radius: 0 0 6px 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        font-weight: 500;
+    "></div>
+
 
     <form id="addBloodGroupForm" style="margin-bottom: 20px;">
       <input type="text" name="name" placeholder="Enter blood group (e.g., A+)" required>
@@ -76,10 +92,9 @@ if ($result) {
 
       </table>
     </div>
-    <!-- showMessage div -->
-    <div id="messageBox" style="margin-bottom: 15px; margin-top: 15px;"></div>
+    
     <!-- Edit Blood Group Modal -->
-    <div id="editBloodGroupModal" style="display: none; margin-top: 20px;">
+    <div id="editBloodGroupModal" style="display: none; margin-top: 20px; margin-bottom: 20px;">
       <form id="editBloodGroupForm">
         <input type="hidden" name="id" id="editBloodId">
         <input type="text" name="name" id="editBloodName" required>
@@ -91,187 +106,127 @@ if ($result) {
 </main>
 
 <script>
-  // -- Add blood group handler
-  $(document).ready(function() {
+$(document).ready(function() {
+    const showMessage = $('#showMessage');
+
+    function showMsg(text, success = true) {
+        showMessage
+            .stop(true, true)
+            .hide()
+            .text(text)
+            .css({
+                'background-color': success ? '#e8f5e9' : '#ffebee',
+                'color': success ? 'green' : 'red',
+                'padding': '10px',
+                'border-radius': '5px',
+                'font-weight': '500',
+                'box-shadow': '0 2px 8px rgba(0,0,0,0.1)'
+            })
+            .slideDown();
+
+        setTimeout(() => {
+            showMessage.slideUp();
+        }, 3000);
+    }
+
+    // -- Add blood group handler
     $('#addBloodGroupForm').on('submit', function(e) {
-      e.preventDefault();
+        e.preventDefault();
 
-      const form = $(this);
-      const formData = form.serialize();
-      const messageBox = $('#messageBox');
+        const form = $(this);
+        const formData = form.serialize();
 
-      $.ajax({
-        url: '<?= BASE_URL . '/admin/php_files/sections/blood_groups/add.php' ?>',
-        type: 'POST',
-        data: formData,
-        dataType: 'json',
-        success: function(res) {
-          messageBox.text(res.message)
-            .css({
-              'padding': '10px',
-              'border-radius': '5px',
-              'color': res.success ? 'green' : 'red',
-              'background-color': res.success ? '#e8f5e9' : '#ffebee'
-            });
+        $.ajax({
+            url: '<?= BASE_URL . '/admin/php_files/sections/blood_groups/add.php' ?>',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(res) {
+                showMsg(res.message, res.success);
+                if (res.success) {
+                    form[0].reset();
+                    setTimeout(() => window.location.reload(), 1000);
+                }
+            },
+            error: function(xhr) {
+                let errorMessage = 'Something went wrong.';
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.message) errorMessage = response.message;
+                } catch {}
 
-          if (res.success) {
-            form[0].reset();
-            setTimeout(() => window.location.reload(), 1000);
-          } else {
-
-          }
-
-          setTimeout(() => {
-            messageBox.fadeOut('slow', function() {
-              $(this).text('').removeAttr('style').show();
-            });
-          }, 3000);
-        },
-        error: function(xhr, status, error) {
-          let errorMessage = 'Something went wrong.';
-          try {
-            const response = JSON.parse(xhr.responseText);
-            if (response.message) {
-              errorMessage = response.message;
+                showMsg(errorMessage, false);
             }
-          } catch (e) {
-            console.warn('Response is not valid JSON:', xhr.responseText);
-          }
-
-          messageBox.text(errorMessage)
-            .css({
-              'padding': '10px',
-              'border-radius': '5px',
-              'color': 'red',
-              'background-color': '#ffebee'
-            });
-
-          setTimeout(() => {
-            messageBox.fadeOut('slow', function() {
-              $(this).text('').removeAttr('style').show();
-            });
-          }, 3000);
-        }
-      });
+        });
     });
-  });
 
-  // -- Delete blood group handler
-  $(document).on('submit', '.deleteBloodGroupForm', function(e) {
-    e.preventDefault();
-    if (!confirm('Delete this group?')) return false;
+    // -- Delete blood group handler
+    $(document).on('submit', '.deleteBloodGroupForm', function(e) {
+        e.preventDefault();
+        if (!confirm('Delete this group?')) return false;
 
-    const form = $(this);
-    const formData = form.serialize();
-    const messageBox = $('#messageBox');
+        const form = $(this);
+        const formData = form.serialize();
 
-    $.ajax({
-      url: '<?= BASE_URL . '/admin/php_files/sections/blood_groups/delete.php' ?>',
-      type: 'POST',
-      data: formData,
-      dataType: 'json',
-      success: function(res) {
-        messageBox.text(res.message)
-          .css({
-            'padding': '10px',
-            'border-radius': '5px',
-            'color': res.success ? 'green' : 'red',
-            'background-color': res.success ? '#e8f5e9' : '#ffebee'
-          });
-
-        if (res.success) {
-          setTimeout(() => window.location.reload(), 1000);
-        }
-
-        setTimeout(() => {
-          messageBox.fadeOut('slow', function() {
-            $(this).text('').removeAttr('style').show();
-          });
-        }, 3000);
-      },
-      error: function() {
-        messageBox.text('Delete failed. Please try again.')
-          .css({
-            'padding': '10px',
-            'border-radius': '5px',
-            'color': 'red',
-            'background-color': '#ffebee'
-          });
-        setTimeout(() => {
-          messageBox.fadeOut('slow', function() {
-            $(this).text('').removeAttr('style').show();
-          });
-        }, 3000);
-      }
+        $.ajax({
+            url: '<?= BASE_URL . '/admin/php_files/sections/blood_groups/delete.php' ?>',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(res) {
+                showMsg(res.message, res.success);
+                if (res.success) {
+                    setTimeout(() => window.location.reload(), 1000);
+                }
+            },
+            error: function() {
+                showMsg('Delete failed. Please try again.', false);
+            }
+        });
     });
-  });
 
-  // -- Edit blood group handler
-  // Open edit modal with pre-filled data
-  $(document).on('click', '.editBloodBtn', function() {
-    const id = $(this).data('id');
-    const name = $(this).data('name');
+    // -- Edit blood group modal show
+    $(document).on('click', '.editBloodBtn', function() {
+        const id = $(this).data('id');
+        const name = $(this).data('name');
 
-    $('#editBloodId').val(id);
-    $('#editBloodName').val(name);
-    $('#editBloodGroupModal').slideDown();
-  });
-
-  // Cancel edit
-  $('#cancelEditBlood').on('click', function() {
-    $('#editBloodGroupModal').slideUp();
-    $('#editBloodGroupForm')[0].reset();
-  });
-
-  // Submit edit form
-  $('#editBloodGroupForm').on('submit', function(e) {
-    e.preventDefault();
-    const formData = $(this).serialize();
-    const messageBox = $('#messageBox');
-
-    $.ajax({
-      url: '<?= BASE_URL . '/admin/php_files/sections/blood_groups/update.php' ?>',
-      type: 'POST',
-      data: formData,
-      dataType: 'json',
-      success: function(res) {
-        messageBox.text(res.message)
-          .css({
-            'padding': '10px',
-            'border-radius': '5px',
-            'color': res.success ? 'green' : 'red',
-            'background-color': res.success ? '#e8f5e9' : '#ffebee'
-          });
-
-        if (res.success) {
-          $('#editBloodGroupModal').slideUp();
-          $('#editBloodGroupForm')[0].reset();
-          setTimeout(() => location.reload(), 1000);
-        }
-
-        setTimeout(() => {
-          messageBox.fadeOut('slow', function() {
-            $(this).text('').removeAttr('style').show();
-          });
-        }, 3000);
-      },
-      error: function() {
-        messageBox.text('Update failed. Please try again.')
-          .css({
-            'padding': '10px',
-            'border-radius': '5px',
-            'color': 'red',
-            'background-color': '#ffebee'
-          });
-        setTimeout(() => {
-          messageBox.fadeOut('slow', function() {
-            $(this).text('').removeAttr('style').show();
-          });
-        }, 3000);
-      }
+        $('#editBloodId').val(id);
+        $('#editBloodName').val(name);
+        $('#editBloodGroupModal').slideDown();
     });
-  });
+
+    // Cancel edit
+    $('#cancelEditBlood').on('click', function() {
+        $('#editBloodGroupModal').slideUp();
+        $('#editBloodGroupForm')[0].reset();
+    });
+
+    // -- Update blood group handler
+    $('#editBloodGroupForm').on('submit', function(e) {
+        e.preventDefault();
+        const formData = $(this).serialize();
+
+        $.ajax({
+            url: '<?= BASE_URL . '/admin/php_files/sections/blood_groups/update.php' ?>',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(res) {
+                showMsg(res.message, res.success);
+                if (res.success) {
+                    $('#editBloodGroupModal').slideUp();
+                    $('#editBloodGroupForm')[0].reset();
+                    setTimeout(() => location.reload(), 1000);
+                }
+            },
+            error: function() {
+                showMsg('Update failed. Please try again.', false);
+            }
+        });
+    });
+});
 </script>
+
 
 
 

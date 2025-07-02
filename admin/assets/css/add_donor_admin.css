@@ -1,0 +1,100 @@
+/* Main content area */
+main.content {
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 80vh;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Heading */
+main.content h2 {
+  color: #c62828;
+  margin-bottom: 20px;
+}
+
+/* Back button */
+main.content a {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 8px 15px;
+  background-color: #ccc;
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+main.content a:hover {
+  background-color: #bbb;
+}
+
+/* Form styling */
+form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea,
+form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border-color: #c62828;
+  outline: none;
+}
+
+/* Submit button */
+form button[type="submit"] {
+  background-color: #c62828;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: #b71c1c;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  form {
+    padding: 15px;
+  }
+
+  main.content a {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  form button[type="submit"] {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

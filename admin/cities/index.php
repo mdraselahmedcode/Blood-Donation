@@ -34,6 +34,22 @@ if ($result) {
         ← Back
     </a>
 
+    <!-- Sliding showMessage div -->
+    <div id="showMessage" style="
+        display:none;
+        position: fixed;
+        top: 90px;
+        left: 56%;
+        transform: translateX(-56%);
+        background-color: #e8f5e9;
+        color: green;
+        padding: 12px 25px;
+        border-radius: 0 0 6px 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        font-weight: 500;
+    "></div>
+
     <form id="addCityForm" style="margin-bottom: 20px;">
         <input type="text" name="name" placeholder="Enter city name" required>
         <button type="submit">Add City</button>
@@ -75,11 +91,11 @@ if ($result) {
         </table>
     </div>
 
-    <!-- showMessage div -->
-    <div id="messageBox" style="margin-bottom: 15px; margin-top: 15px;"></div>
+    
+
 
     <!-- Edit City Modal -->
-    <div id="editCityModal" style="display: none; margin-bottom: 20px;">
+    <div id="editCityModal" style="display: none; margin-bottom: 20px; margin-top: 20px;">
         <form id="editCityForm">
             <input type="hidden" name="id" id="editCityId">
             <input type="text" name="name" id="editCityName" required>
@@ -91,173 +107,120 @@ if ($result) {
 </main>
 
 <script>
-    $(document).ready(function() {
-        // -- Add city
-        $('#addCityForm').on('submit', function(e) {
-            e.preventDefault();
-            const form = $(this);
-            const formData = form.serialize();
-            const messageBox = $('#messageBox');
+$(document).ready(function() {
+    const showMessage = $('#showMessage');
 
-            $.ajax({
-                url: '<?= BASE_URL . '/admin/php_files/sections/cities/add.php' ?>',
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                success: function(res) {
-                    messageBox.text(res.message)
-                        .css({
-                            'padding': '10px',
-                            'border-radius': '5px',
-                            'color': res.success ? 'green' : 'red',
-                            'background-color': res.success ? '#e8f5e9' : '#ffebee'
-                        });
+    function showMsg(text, success = true) {
+        showMessage
+            .stop(true, true)
+            .hide()
+            .text(text)
+            .css({
+                'background-color': success ? '#e8f5e9' : '#ffebee',
+                'color': success ? 'green' : 'red',
+                'padding': '10px',
+                'border-radius': '5px',
+                'font-weight': '500',
+                'box-shadow': '0 2px 8px rgba(0,0,0,0.1)'
+            })
+            .slideDown();
 
-                    if (res.success) {
-                        form[0].reset();
-                        setTimeout(() => window.location.reload(), 1000);
-                    }
+        setTimeout(() => {
+            showMessage.slideUp();
+        }, 3000);
+    }
 
-                    setTimeout(() => {
-                        messageBox.fadeOut('slow', function() {
-                            $(this).text('').removeAttr('style').show();
-                        });
-                    }, 3000);
-                },
-                error: function() {
-                    messageBox.text('Something went wrong.')
-                        .css({
-                            'padding': '10px',
-                            'border-radius': '5px',
-                            'color': 'red',
-                            'background-color': '#ffebee'
-                        });
-                    setTimeout(() => {
-                        messageBox.fadeOut('slow', function() {
-                            $(this).text('').removeAttr('style').show();
-                        });
-                    }, 3000);
+    // -- Add city
+    $('#addCityForm').on('submit', function(e) {
+        e.preventDefault();
+        const form = $(this);
+        const formData = form.serialize();
+
+        $.ajax({
+            url: '<?= BASE_URL . '/admin/php_files/sections/cities/add.php' ?>',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(res) {
+                showMsg(res.message, res.success);
+                if (res.success) {
+                    form[0].reset();
+                    setTimeout(() => window.location.reload(), 1000);
                 }
-            });
+            },
+            error: function() {
+                showMsg('Something went wrong.', false);
+            }
         });
-
-        // -- Delete city
-        $(document).on('submit', '.deleteCityForm', function(e) {
-            e.preventDefault();
-            if (!confirm('Delete this city?')) return false;
-
-            const form = $(this);
-            const formData = form.serialize();
-            const messageBox = $('#messageBox');
-
-            $.ajax({
-                url: '<?= BASE_URL . '/admin/php_files/sections/cities/delete.php' ?>',
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                success: function(res) {
-                    messageBox.text(res.message)
-                        .css({
-                            'padding': '10px',
-                            'border-radius': '5px',
-                            'color': res.success ? 'green' : 'red',
-                            'background-color': res.success ? '#e8f5e9' : '#ffebee'
-                        });
-
-                    if (res.success) {
-                        setTimeout(() => window.location.reload(), 1000);
-                    }
-
-                    setTimeout(() => {
-                        messageBox.fadeOut('slow', function() {
-                            $(this).text('').removeAttr('style').show();
-                        });
-                    }, 3000);
-                },
-                error: function() {
-                    messageBox.text('Delete failed. Please try again.')
-                        .css({
-                            'padding': '10px',
-                            'border-radius': '5px',
-                            'color': 'red',
-                            'background-color': '#ffebee'
-                        });
-                    setTimeout(() => {
-                        messageBox.fadeOut('slow', function() {
-                            $(this).text('').removeAttr('style').show();
-                        });
-                    }, 3000);
-                }
-            });
-        });
-
-        // -- Edit city
-        // Show edit form with current data
-        $(document).on('click', '.editCityBtn', function() {
-            const cityId = $(this).data('id');
-            const cityName = $(this).data('name');
-
-            $('#editCityId').val(cityId);
-            $('#editCityName').val(cityName);
-            $('#editCityModal').slideDown();
-        });
-
-        // Cancel edit
-        $('#cancelEdit').on('click', function() {
-            $('#editCityModal').slideUp();
-            $('#editCityForm')[0].reset();
-        });
-
-        // Handle update form submission
-        $('#editCityForm').on('submit', function(e) {
-            e.preventDefault();
-            const formData = $(this).serialize();
-            const messageBox = $('#messageBox');
-
-            $.ajax({
-                url: '<?= BASE_URL . '/admin/php_files/sections/cities/update.php' ?>',
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                success: function(res) {
-                    messageBox.text(res.message)
-                        .css({
-                            'padding': '10px',
-                            'border-radius': '5px',
-                            'color': res.success ? 'green' : 'red',
-                            'background-color': res.success ? '#e8f5e9' : '#ffebee'
-                        });
-
-                    if (res.success) {
-                        $('#editCityModal').slideUp();
-                        $('#editCityForm')[0].reset();
-                        setTimeout(() => location.reload(), 1000);
-                    }
-
-                    setTimeout(() => {
-                        messageBox.fadeOut('slow', function() {
-                            $(this).text('').removeAttr('style').show();
-                        });
-                    }, 3000);
-                },
-                error: function() {
-                    messageBox.text('Update failed. Please try again.')
-                        .css({
-                            'padding': '10px',
-                            'border-radius': '5px',
-                            'color': 'red',
-                            'background-color': '#ffebee'
-                        });
-                    setTimeout(() => {
-                        messageBox.fadeOut('slow', function() {
-                            $(this).text('').removeAttr('style').show();
-                        });
-                    }, 3000);
-                }
-            });
-        });
-
     });
+
+    // -- Delete city
+    $(document).on('submit', '.deleteCityForm', function(e) {
+        e.preventDefault();
+        if (!confirm('Delete this city?')) return false;
+
+        const form = $(this);
+        const formData = form.serialize();
+
+        $.ajax({
+            url: '<?= BASE_URL . '/admin/php_files/sections/cities/delete.php' ?>',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(res) {
+                showMsg(res.message, res.success);
+                if (res.success) {
+                    setTimeout(() => window.location.reload(), 1000);
+                }
+            },
+            error: function() {
+                showMsg('Delete failed. Please try again.', false);
+            }
+        });
+    });
+
+    // -- Edit city modal show
+    $(document).on('click', '.editCityBtn', function() {
+        const cityId = $(this).data('id');
+        const cityName = $(this).data('name');
+
+        $('#editCityId').val(cityId);
+        $('#editCityName').val(cityName);
+        $('#editCityModal').slideDown();
+    });
+
+    // Cancel edit
+    $('#cancelEdit').on('click', function() {
+        $('#editCityModal').slideUp();
+        $('#editCityForm')[0].reset();
+    });
+
+    // -- Update city
+    $('#editCityForm').on('submit', function(e) {
+        e.preventDefault();
+        const formData = $(this).serialize();
+
+        $.ajax({
+            url: '<?= BASE_URL . '/admin/php_files/sections/cities/update.php' ?>',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(res) {
+                showMsg(res.message, res.success);
+                if (res.success) {
+                    $('#editCityModal').slideUp();
+                    $('#editCityForm')[0].reset();
+                    setTimeout(() => location.reload(), 1000);
+                }
+            },
+            error: function() {
+                showMsg('Update failed. Please try again.', false);
+            }
+        });
+    });
+
+});
 </script>
+
 
 <?php require_once BASE_PATH . '/admin/includes/footer_admin.php'; ?>
