@@ -1,0 +1,132 @@
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-form {
+  width: 100%;
+  max-width: 500px;                /* max width of the form */
+  min-width: 400px;                /* minimum width of the form */
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.profile-form div {
+  margin-bottom: 15px;
+}
+
+.profile-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.profile-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.profile-form button {
+  padding: 10px 20px;
+  background-color: #c62828;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.profile-form button:hover {
+  background-color: #b71c1c;
+}
+
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* dark shadow background */
+  display: none;
+  z-index: 9998;
+}
+
+/* Modal box */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  min-width: 350px;
+  z-index: 9999;
+  display: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Modal input group */
+.modal-group {
+  margin-bottom: 12px;
+}
+
+.modal-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.modal-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Modal buttons */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-actions button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-actions button[type="submit"] {
+  background-color: #c62828;
+  color: white;
+}
+
+.modal-actions button#closePasswordModal {
+  background-color: #ddd;
+  color: #272626;
+}
+
+.modal-actions button:hover {
+  opacity: 0.9;
+}
+
+
+
+/* Responsive (mobile) */
+@media (min-width: 992px) {
+  .profile-form  {
+    min-width: 700px;
+    max-width: 800px;
+  }
+}

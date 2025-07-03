@@ -29,16 +29,19 @@ require_once __DIR__ . '/../../config/config.php';
         <nav class="nav-links">
             <?php if (isset($_SESSION['admin_logged_in'])): ?>
                 <a href="<?= BASE_URL . '/admin/dashboard.php' ?>">Dashboard</a>
-                <a href="<?= BASE_URL . '/admin/donors.php' ?>">Donors</a>
+                <a href="<?= BASE_URL . '/admin/donors/index.php' ?>">Donors</a>
                 <a href="<?= BASE_URL . '/admin/requests.php' ?>">Requests</a>
                 <a href="<?= BASE_URL . '/admin/settings.php' ?>">Settings</a>
+                <a href="<?= BASE_URL . '/admin/profile/index.php' ?>">Profile</a>
             <?php else: ?>
                 <a href="<?= BASE_URL . '/index.php' ?>">Home</a>
                 <a href="#">About Us</a>
                 <a href="#">Donate</a>
                 <a href="#">Find Blood</a>
                 <a href="#">Contact</a>
-                <a href="<?= BASE_URL . '/admin/login.php' ?>">Admin</a>
+                <a href="<?= BASE_URL . '/user/login.php' ?>">Login</a>
+                <a href="<?= BASE_URL . '/user/signup.php' ?>">Sign Up</a>
+                <a href="<?= BASE_URL . '/admin/login.php' ?>">Admin Login</a>
             <?php endif; ?>
         </nav>
 

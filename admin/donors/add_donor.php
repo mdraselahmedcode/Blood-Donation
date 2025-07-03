@@ -37,16 +37,16 @@ if ($groupResult) {
 <main class="content">
 
     <!-- Sliding Message Box -->
-    <div id="showMessage" style="display:none; position: fixed; top: 10px; left: 56%; transform: translateX(-56%);
+    <div id="showMessage" style="display:none; position: fixed; top: 70px; left: 56%; transform: translateX(-56%);
         background-color: #e8f5e9; color: green; padding: 12px 25px; border-radius: 0 0 6px 6px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); z-index: 9999; font-weight: 500;">
     </div>
 
-    <h2>Add Donor</h2>
-
+    
     <a href="<?= BASE_URL ?>/admin/donors/index.php" style="display: inline-block; margin-bottom: 15px; padding: 8px 12px; background-color: #ccc; color: #000; text-decoration: none; border-radius: 4px;">
         ← Back to Donors List
     </a>
+    <h2 style="text-align: center;">Add Donor</h2>
 
     <form id="addDonor" style="max-width: 600px;">
         <div style="margin-bottom: 15px;">

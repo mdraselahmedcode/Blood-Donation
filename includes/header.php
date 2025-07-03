@@ -31,9 +31,15 @@ require_once __DIR__ . '/../config/config.php';
             <a href="#">Donate</a>
             <a href="#">Find Blood</a>
             <a href="#">Contact</a>
-            <a href="<?= BASE_URL . '/admin/login.php' ?>">Admin</a>
+            <a href="<?= BASE_URL . '/user/login.php' ?>">Login</a>
+            <a href="<?= BASE_URL . '/user/signup.php' ?>">Sign Up</a>
+            <a href="<?= BASE_URL . '/admin/login.php' ?>">Admin Login</a>
         </nav>
         <button class="cta-button" onclick="window.location.href='<?= BASE_URL . '/register.php' ?>'">
             Become a Donor
         </button>
     </header>
+
+
+     <!-- Local jQuery -->
+    <script src="<?= BASE_URL ?>/vendor/jquery/jquery.min.js"></script>
