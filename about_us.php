@@ -46,7 +46,7 @@ if ($result && $row = $result->fetch_assoc()) {
                             <div class="stat-label">Registered Donors</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number" data-count="50">0</div>
+                            <div class="stat-number" data-count="3">0</div>
                             <div class="stat-label">Partner Hospitals</div>
                         </div>
                     </div>

@@ -51,13 +51,13 @@ require_once __DIR__ . '/../../config/config.php';
                 <a href="#">Settings</a>
             <?php else: ?>
                 <a href="<?= BASE_URL . '/index.php' ?>">Home</a>
-                <a href="#">Donate</a>
-                <a href="#">Find Blood</a>
-                <a href="<?= BASE_URL . '/user/login.php' ?>">Login</a>
-                <a href="<?= BASE_URL . '/user/signup.php' ?>">Sign Up</a>
-                <a href="<?= BASE_URL . '/admin/login.php' ?>">Admin Login</a>
+                <a href="<?= BASE_URL . '/user/signup.php' ?>">Donate</a>
+                <a href="<?= BASE_URL . '/user/signup.php' ?>">Find Blood</a>
                 <a href="<?= BASE_URL . '/contact.php' ?>">Contact</a>
                 <a href="<?= BASE_URL . '/about_us.php' ?>">About Us</a>
+                <a href="<?= BASE_URL . '/admin/login.php' ?>">Admin Login</a>
+                <a href="<?= BASE_URL . '/user/login.php' ?>">Login</a>
+                <a href="<?= BASE_URL . '/user/signup.php' ?>">Sign Up</a>
             <?php endif; ?>
         </nav>
 

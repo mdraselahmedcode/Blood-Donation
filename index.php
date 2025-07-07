@@ -116,8 +116,6 @@ if ($query && $row = $query->fetch_assoc()) {
     /* CTA Buttons */
     .cta-container {
       display: flex;
-      justify-content: center;
-      align-items: center;
       gap: 20px;
       margin-top: 30px;
     }
@@ -876,9 +874,9 @@ if ($query && $row = $query->fetch_assoc()) {
       <div class="join-content">
         <h2>Ready to Make a Difference?</h2>
         <p>Join our mission to ensure no patient goes without life-saving blood when they need it most.</p>
-        <div class="cta-container">
+        <div class="cta-container" style="justify-content: center; align-items: center;">
           <a href="<?= BASE_URL ?>/user/signup.php" class="cta-button">Join Now</a>
-          <a href="<?= BASE_URL ?>/about.php" class="cta-secondary">Learn More</a>
+          <a href="<?= BASE_URL ?>/about_us.php" class="cta-secondary">Learn More</a>
         </div>
       </div>
     </section>
