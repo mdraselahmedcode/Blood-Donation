@@ -67,6 +67,8 @@ if (!empty($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true)
   </div>
 </div>
 
+<?php include BASE_PATH . "/admin/includes/footer_admin.php" ?>
+
 
 <script>
   $(document).ready(function () {

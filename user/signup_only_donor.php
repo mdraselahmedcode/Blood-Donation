@@ -32,51 +32,55 @@ $result->free();
   <link rel="stylesheet" href="<?= BASE_URL ?>/user/assets/css/signup.css">
 </head>
 
-<div class="signup-container">
-  <div id="showMessage" style="display: none; position: fixed; top: 70px; left: 50%; transform: translateX(-50%); z-index: 9999; min-width: 300px; text-align: center;"></div>
-
-  <h2>Register as Donor</h2>
-
-  <form id="signup-form" class="signup-form">
-    <input type="text" name="name" placeholder="Full Name" required>
-
-    <select name="gender" required>
-      <option value="">Select Gender</option>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-      <option value="Other">Other</option>
-    </select>
-
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="text" name="phone" placeholder="Phone Number" required>
-    <textarea name="address" placeholder="Address" required></textarea>
-    <input type="text" name="pin_code" placeholder="Pin Code" required>
-
-    <select name="city_id" required>
-      <option value="">Select City</option>
-      <?php foreach ($cities as $city): ?>
-        <option value="<?= htmlspecialchars($city['id']) ?>"><?= htmlspecialchars($city['name']) ?></option>
-      <?php endforeach; ?>
-    </select>
-
-    <input type="text" name="country" placeholder="Country" required>
-    <input type="password" name="password" placeholder="Password" required>
-
-    <!-- Donor-only field -->
-    <select name="blood_group_id" required>
-      <option value="">Select Blood Group</option>
-      <?php foreach ($bloodGroups as $bg): ?>
-        <option value="<?= htmlspecialchars($bg['id']) ?>"><?= htmlspecialchars($bg['name']) ?></option>
-      <?php endforeach; ?>
-    </select>
-
-    <button type="submit">Sign Up</button>
-  </form>
-
-  <div class="login-link">
-    Already have an account? <a href="login.php">Log in</a>
+<div class="" style="display: flex; justify-content: center; flex-direction: column; flex:1">
+  <div class="signup-container">
+    <div id="showMessage" style="display: none; position: fixed; top: 70px; left: 50%; transform: translateX(-50%); z-index: 9999; min-width: 300px; text-align: center;"></div>
+  
+    <h2>Register as Donor</h2>
+  
+    <form id="signup-form" class="signup-form">
+      <input type="text" name="name" placeholder="Full Name" required>
+  
+      <select name="gender" required>
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+  
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="phone" placeholder="Phone Number" required>
+      <textarea name="address" placeholder="Address" required></textarea>
+      <input type="text" name="pin_code" placeholder="Pin Code" required>
+  
+      <select name="city_id" required>
+        <option value="">Select City</option>
+        <?php foreach ($cities as $city): ?>
+          <option value="<?= htmlspecialchars($city['id']) ?>"><?= htmlspecialchars($city['name']) ?></option>
+        <?php endforeach; ?>
+      </select>
+  
+      <input type="text" name="country" placeholder="Country" required>
+      <input type="password" name="password" placeholder="Password" required>
+  
+      <!-- Donor-only field -->
+      <select name="blood_group_id" required>
+        <option value="">Select Blood Group</option>
+        <?php foreach ($bloodGroups as $bg): ?>
+          <option value="<?= htmlspecialchars($bg['id']) ?>"><?= htmlspecialchars($bg['name']) ?></option>
+        <?php endforeach; ?>
+      </select>
+  
+      <button type="submit">Sign Up</button>
+    </form>
+  
+    <div class="login-link">
+      Already have an account? <a href="login.php">Log in</a>
+    </div>
   </div>
 </div>
+
+<?php include BASE_PATH . '/admin/includes/footer_admin.php' ?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

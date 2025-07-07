@@ -39,70 +39,75 @@ $result->free();
   <link rel="stylesheet" href="<?= BASE_URL ?>/user/assets/css/signup.css">
 </head>
 
-<div class="signup-container">
-  <!-- Sliding showMessage -->
-  <div id="showMessage" style="
-  display: none;
-  position: fixed;
-  top: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  min-width: 300px;
-  text-align: center;
-  "></div>
+<div class="" style="display: flex; justify-content: center; flex-direction: column; flex: 1">
 
-  <h2>Register</h2>
-
-  <div id="response-message"></div>
-
-  <form id="signup-form" class="signup-form">
-    <input type="text" name="name" placeholder="Full Name" required>
-
-    <select name="gender" required>
-      <option value="">Select Gender</option>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-      <option value="Other">Other</option>
-    </select>
-
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="text" name="phone" placeholder="Phone Number" required>
-    <textarea name="address" placeholder="Address" required></textarea>
-    <input type="text" name="pin_code" placeholder="Pin Code" required>
-
-    <!-- City Dropdown -->
-    <select name="city_id" required>
-      <option value="">Select City</option>
-      <?php foreach ($cities as $city): ?>
-        <option value="<?= htmlspecialchars($city['id']) ?>"><?= htmlspecialchars($city['name']) ?></option>
-      <?php endforeach; ?>
-    </select>
-
-    <input type="text" name="country" placeholder="Country" required>
-    <input type="password" name="password" placeholder="Password" required>
-
-    <div class="checkbox-wrapper">
-      <input type="checkbox" name="is_donor" id="is_donor_checkbox">
-      <label for="is_donor_checkbox">I want to register as a donor</label>
-    </div>
-
-    <div id="donor-fields" style="display:none;">
-      <select name="blood_group_id" id="blood_group_id">
-        <option value="">Select Blood Group</option>
-        <?php foreach ($bloodGroups as $bg): ?>
-          <option value="<?= htmlspecialchars($bg['id']) ?>"><?= htmlspecialchars($bg['name']) ?></option>
+  <div class="signup-container">
+    <!-- Sliding showMessage -->
+    <div id="showMessage" style="
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    min-width: 300px;
+    text-align: center;
+    "></div>
+  
+    <h2>Register</h2>
+  
+    <div id="response-message"></div>
+  
+    <form id="signup-form" class="signup-form">
+      <input type="text" name="name" placeholder="Full Name" required>
+  
+      <select name="gender" required>
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+  
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="phone" placeholder="Phone Number" required>
+      <textarea name="address" placeholder="Address" required></textarea>
+      <input type="text" name="pin_code" placeholder="Pin Code" required>
+  
+      <!-- City Dropdown -->
+      <select name="city_id" required>
+        <option value="">Select City</option>
+        <?php foreach ($cities as $city): ?>
+          <option value="<?= htmlspecialchars($city['id']) ?>"><?= htmlspecialchars($city['name']) ?></option>
         <?php endforeach; ?>
       </select>
+  
+      <input type="text" name="country" placeholder="Country" required>
+      <input type="password" name="password" placeholder="Password" required>
+  
+      <div class="checkbox-wrapper">
+        <input type="checkbox" name="is_donor" id="is_donor_checkbox">
+        <label for="is_donor_checkbox">I want to register as a donor</label>
+      </div>
+  
+      <div id="donor-fields" style="display:none;">
+        <select name="blood_group_id" id="blood_group_id">
+          <option value="">Select Blood Group</option>
+          <?php foreach ($bloodGroups as $bg): ?>
+            <option value="<?= htmlspecialchars($bg['id']) ?>"><?= htmlspecialchars($bg['name']) ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+  
+      <button type="submit">Sign Up</button>
+    </form>
+  
+    <div class="login-link">
+      Already have an account? <a href="login.php">Log in</a>
     </div>
-
-    <button type="submit">Sign Up</button>
-  </form>
-
-  <div class="login-link">
-    Already have an account? <a href="login.php">Log in</a>
   </div>
 </div>
+
+<?php include BASE_PATH . "/admin/includes/footer_admin.php" ?>
 
 <script>
   $(document).ready(function () {
