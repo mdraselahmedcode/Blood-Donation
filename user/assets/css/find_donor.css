@@ -1,0 +1,66 @@
+.search-form {
+    margin-bottom: 30px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .search-form select {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
+  .search-form button {
+    padding: 10px 20px;
+    background: #c62828;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .donor-result {
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    max-height: 450px;
+    overflow-y: auto;
+  }
+
+  .donor-card {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .donor-card:last-child {
+    border-bottom: none;
+  }
+
+  .donor-card h4 {
+    margin: 0 0 8px;
+    color: #c62828;
+  }
+
+  .donor-card p {
+    margin: 2px 0;
+  }
+
+  /* ✅ Custom scrollbar */
+  .donor-result::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .donor-result::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+
+  .donor-result::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+  }
+
+

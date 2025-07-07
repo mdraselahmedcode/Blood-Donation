@@ -1,0 +1,188 @@
+/* Main content area */
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 80vh; /* Ensures footer stays at bottom */
+}
+
+/* Profile form styling */
+.profile-form {
+    width: 100%;
+    max-width: 500px;
+    min-width: 300px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.profile-form div {
+    margin-bottom: 15px;
+}
+
+.profile-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.profile-form input,
+.profile-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+}
+
+.profile-form input:focus,
+.profile-form select:focus {
+    outline: 2px solid #c62828;
+    border-color: #c62828;
+}
+
+.profile-form input:hover,
+.profile-form select:hover {
+    border-color: #c62828;
+}
+
+.profile-form button {
+    padding: 10px 20px;
+    background-color: #c62828;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.profile-form button:hover,
+.profile-form button:focus {
+    background-color: #b71c1c;
+    outline: none;
+}
+
+/* Button row for actions */
+.button-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Compact row layout for fields */
+.form-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 15px;
+}
+.form-row > div {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+    .profile-form {
+        min-width: 100%;
+        padding: 15px;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .button-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .profile-form input,
+    .profile-form select,
+    .profile-form button {
+        padding: 8px;
+    }
+}
+
+/* Modal overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 9998;
+}
+
+/* Modal box */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    min-width: 300px;
+    z-index: 9999;
+    display: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Modal input group */
+.modal-group {
+    margin-bottom: 12px;
+}
+
+.modal-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.modal-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Modal buttons */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal-actions button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-actions button[type="submit"] {
+    background-color: #c62828;
+    color: white;
+}
+
+.modal-actions button#closePasswordModal {
+    background-color: #ddd;
+    color: #272626;
+}
+
+.modal-actions button:hover,
+.modal-actions button:focus {
+    opacity: 0.9;
+    outline: none;
+}
+
+/* Large screens: wider form */
+@media (min-width: 992px) {
+    .profile-form  {
+        min-width: 700px;
+        max-width: 800px;
+    }
+}

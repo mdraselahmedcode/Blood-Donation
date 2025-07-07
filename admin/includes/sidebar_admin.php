@@ -245,18 +245,20 @@
       <span class="admin-badge">Admin</span>
     </a>
   </div>
-  <!-- Sidebar header -->
-  <!-- <div class="sidebar-header">
-    <h3 class="sidebar-brand">Admin Panel</h3>
-  </div> -->
+
   
   <ul class="sidebar-menu">
     <li><a href="<?= BASE_URL ?>/admin/dashboard.php" class="sidebar-link"><i class="bi bi-speedometer2"></i><span class="link-text">Dashboard</span></a></li>
     <li><a href="<?= BASE_URL ?>/admin/blood_groups/index.php" class="sidebar-link"><i class="bi bi-droplet"></i><span class="link-text">Blood Groups</span></a></li>
     <li><a href="<?= BASE_URL ?>/admin/donors/index.php" class="sidebar-link"><i class="bi bi-people-fill"></i><span class="link-text">Donors</span></a></li>
+    <li><a href="<?= BASE_URL ?>/admin/users/index.php" class="sidebar-link"><i class="bi bi-people-fill"></i><span class="link-text">Users</span></a></li>
+    <?php if (!empty($_SESSION['super_admin']) && $_SESSION['super_admin'] == 1): ?>
+        <li><a href="<?= BASE_URL ?>/admin/admins/index.php" class="sidebar-link"><i class="bi bi-people-fill"></i><span class="link-text">Admins</span></a></li>
+    <?php endif; ?>
     <li><a href="<?= BASE_URL ?>/admin/cities/index.php" class="sidebar-link"><i class="bi bi-building"></i><span class="link-text">Cities</span></a></li>
-    <li><a href="<?= BASE_URL ?>/admin/requests.php" class="sidebar-link"><i class="bi bi-inbox-fill"></i><span class="link-text">Requests</span></a></li>
-    <li><a href="<?= BASE_URL ?>/admin/settings.php" class="sidebar-link"><i class="bi bi-gear-fill"></i><span class="link-text">Settings</span></a></li>
+    <li><a href="<?= BASE_URL ?>/admin/profile/index.php" class="sidebar-link"><i class="bi bi-building"></i><span class="link-text">Profile</span></a></li>
+    <li><a href="#" class="sidebar-link"><i class="bi bi-inbox-fill"></i><span class="link-text">Requests</span></a></li>
+    <li><a href="#" class="sidebar-link"><i class="bi bi-gear-fill"></i><span class="link-text">Settings</span></a></li>
     <li class="sidebar-footer"><a href="<?= BASE_URL ?>/admin/php_files/logout_admin_handler.php" class="sidebar-link logout-link"><i class="bi bi-box-arrow-right"></i><span class="link-text">Logout</span></a></li>
   </ul>
 </aside>

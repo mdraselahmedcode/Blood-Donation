@@ -2,8 +2,15 @@
 session_start();
 include __DIR__ . '/../config/config.php';
 
+// Redirect if admin is logged in
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
     header('Location: ' . BASE_URL . '/admin/dashboard.php');
+    exit;
+}
+
+// Redirect if user or donor is logged in
+if (!empty($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) {
+    header('Location: ' . BASE_URL . '/user/dashboard.php');
     exit;
 }
 ?>

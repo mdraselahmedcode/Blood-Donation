@@ -4,7 +4,13 @@ require_once __DIR__ . '/../../config/config.php';
 require_once BASE_PATH . '/config/db.php';
 
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    header('Location: ' . BASE_URL . '/admin/loginPage_admin.php');
+    header('Location: ' . BASE_URL . '/admin/login.php');
+    exit;
+}
+
+// Redirect if user or donor is logged in
+if (!empty($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) {
+    header('Location: ' . BASE_URL . '/user/dashboard.php');
     exit;
 }
 
@@ -34,21 +40,30 @@ if ($cityRes) {
         $cities[] = $row;
     }
 }
+
+// Session message for redirects
+$message = '';
+if (isset($_SESSION['admin_message'])) {
+    $message = $_SESSION['admin_message'];
+    unset($_SESSION['admin_message']);
+}
 ?>
 
 <head>
     <link rel="stylesheet" href="<?= BASE_URL . '/admin/assets/css/donors_admin.css' ?>">
 </head>
 
+<!-- Sliding Message Box -->
+<div id="showMessage" style="display:none; position: fixed; top: 70px; left: 56%; transform: translateX(-56%);
+    background-color: #e8f5e9; color: green; padding: 12px 25px; border-radius: 0 0 6px 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); z-index: 9999; font-weight: 500;">
+</div>
+
 <main class="content">
     <h2>Donor Management</h2>
 
     <a href="<?= BASE_URL ?>/admin/dashboard.php" class="back-button">← Back</a>
     <a href="<?= BASE_URL ?>/admin/donors/add_donor.php" class="add-donor-btn">+ Add New Donor</a>
-
-
-    <!-- Success / Error Message -->
-    <div id="messageBox" style="margin-bottom: 15px;"></div>
 
     <div class="scroll-table">
         <!-- Donor List Table -->
@@ -88,7 +103,6 @@ if ($cityRes) {
                             <td>
                                 <div class="action-buttons">
                                     <a href="<?= BASE_URL . '/admin/donors/update.php?id=' . $donor['id'] ?>" class="btn-edit">Edit</a>
-
                                     <form class="deleteDonorForm" onsubmit="return confirm('Delete this donor?')" style="display:inline;">
                                         <input type="hidden" name="id" value="<?= $donor['id'] ?>">
                                         <button type="submit" class="btn-delete">Delete</button>
@@ -103,56 +117,31 @@ if ($cityRes) {
     </div>
 </main>
 
+<script src="<?= BASE_URL ?>/vendor/jquery/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Add Donor
-        // $('#addDonorForm').on('submit', function (e) {
-        //     e.preventDefault();
-        //     const form = $(this);
-        //     const messageBox = $('#messageBox');
-
-        //     $.ajax({
-        //         url: '<?= BASE_URL ?>/admin/php_files/sections/donors/add.php',
-        //         type: 'POST',
-        //         data: form.serialize(),
-        //         dataType: 'json',
-        //         success: function (res) {
-        //             messageBox.text(res.message)
-        //                 .css({
-        //                     padding: '10px',
-        //                     borderRadius: '5px',
-        //                     color: res.success ? 'green' : 'red',
-        //                     backgroundColor: res.success ? '#e8f5e9' : '#ffebee'
-        //                 });
-
-        //             if (res.success) {
-        //                 form[0].reset();
-        //                 setTimeout(() => window.location.reload(), 1000);
-        //             }
-
-        //             setTimeout(() => {
-        //                 messageBox.fadeOut('slow', function () {
-        //                     $(this).text('').removeAttr('style').show();
-        //                 });
-        //             }, 3000);
-        //         },
-        //         error: function () {
-        //             messageBox.text('Failed to add donor.')
-        //                 .css({
-        //                     padding: '10px',
-        //                     borderRadius: '5px',
-        //                     color: 'red',
-        //                     backgroundColor: '#ffebee'
-        //                 });
-        //         }
-        //     });
-        // });
+        // Show session message if exists
+        <?php if (!empty($message)): ?>
+            $('#showMessage')
+                .text("<?= htmlspecialchars($message) ?>")
+                .css({
+                    'background-color': '#e8f5e9',
+                    'color': 'green'
+                })
+                .slideDown();
+            setTimeout(() => {
+                $('#showMessage').slideUp();
+            }, 3000);
+        <?php endif; ?>
 
         // Delete Donor
         $(document).on('submit', '.deleteDonorForm', function(e) {
             e.preventDefault();
             const form = $(this);
-            const messageBox = $('#messageBox');
+
+            $('#showMessage')
+                .stop(true, true)
+                .hide();
 
             $.ajax({
                 url: '<?= BASE_URL ?>/admin/php_files/sections/donors/delete.php',
@@ -160,26 +149,38 @@ if ($cityRes) {
                 data: form.serialize(),
                 dataType: 'json',
                 success: function(res) {
-                    messageBox.text(res.message)
+                    $('#showMessage')
+                        .stop(true, true)
+                        .hide()
+                        .text(res.message)
                         .css({
-                            padding: '10px',
-                            borderRadius: '5px',
-                            color: res.success ? 'green' : 'red',
-                            backgroundColor: res.success ? '#e8f5e9' : '#ffebee'
-                        });
+                            'background-color': res.success ? '#e8f5e9' : '#ffebee',
+                            'color': res.success ? 'green' : 'red'
+                        })
+                        .slideDown();
 
                     if (res.success) {
                         setTimeout(() => window.location.reload(), 1000);
+                    } else {
+                        setTimeout(() => {
+                            $('#showMessage').slideUp();
+                        }, 3000);
                     }
                 },
                 error: function() {
-                    messageBox.text('Failed to delete donor.')
+                    $('#showMessage')
+                        .stop(true, true)
+                        .hide()
+                        .text('Failed to delete donor.')
                         .css({
-                            padding: '10px',
-                            borderRadius: '5px',
-                            color: 'red',
-                            backgroundColor: '#ffebee'
-                        });
+                            'background-color': '#ffebee',
+                            'color': 'red'
+                        })
+                        .slideDown();
+
+                    setTimeout(() => {
+                        $('#showMessage').slideUp();
+                    }, 3000);
                 }
             });
         });

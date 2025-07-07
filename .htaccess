@@ -1,1 +1,43 @@
 DirectoryIndex index.php
+RewriteEngine On
+
+# Skip real files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Front controller for root
+RewriteRule ^$ index.php [L]
+
+# ================= ADMIN ROUTES =================
+# Admin root files
+RewriteRule ^admin/login$ admin/login.php [L]
+RewriteRule ^admin/dashboard$ admin/dashboard.php [L]
+
+# Admin index pages
+RewriteRule ^admin/(blood_groups|cities|donors|users|admins|profile)/?$ admin/$1/index.php [L]
+
+# Admin add pages
+RewriteRule ^admin/donors/add$ admin/donors/add_donor.php [L]
+RewriteRule ^admin/users/add$ admin/users/add_user.php [L]
+RewriteRule ^admin/admins/add$ admin/admins/add_admin.php [L]
+
+# Admin update pages
+RewriteRule ^admin/donors/update/([0-9]+)$ admin/donors/update.php?id=$1 [L,QSA]
+RewriteRule ^admin/users/update/([0-9]+)$ admin/users/update.php?id=$1 [L,QSA]
+RewriteRule ^admin/admins/update/([0-9]+)$ admin/admins/update.php?id=$1 [L,QSA]
+
+# ================= USER ROUTES =================
+# User root files
+RewriteRule ^user/login$ user/login.php [L]
+RewriteRule ^user/signup$ user/signup.php [L]
+RewriteRule ^user/signup_only_donor$ user/signup_only_donor.php [L]
+RewriteRule ^user/dashboard$ user/dashboard.php [L]
+
+# User profile/donor pages
+RewriteRule ^user/donor/profile$ user/donor/profile.php [L]
+RewriteRule ^user/receiver/find_donor$ user/receiver/find_donor.php [L]
+RewriteRule ^user/receiver/profile$ user/receiver/profile.php [L]
+
+# ================= 404 HANDLING =================
+ErrorDocument 404 /blood-donate/404.php

@@ -25,7 +25,6 @@
 //     echo "❌ Error: " . $stmt->error;
 // }
 
-
 echo password_hash('password!123', PASSWORD_BCRYPT);
 
 ?>

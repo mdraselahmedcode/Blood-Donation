@@ -4,6 +4,19 @@ include __DIR__ . '/../config/config.php';
 include BASE_PATH . '/config/db.php';
 include BASE_PATH . '/includes/header.php';
 
+// Redirect if admin is logged in
+if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
+    header('Location: ' . BASE_URL . '/admin/dashboard.php');
+    exit;
+}
+
+// Redirect if user or donor is logged in
+if (!empty($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) {
+    header('Location: ' . BASE_URL . '/user/dashboard.php');
+    exit;
+}
+
+
 // Fetch blood groups
 $bloodGroups = [];
 $result = $conn->query("SELECT id, name FROM blood_groups ORDER BY name");

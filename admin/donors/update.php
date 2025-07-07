@@ -4,7 +4,13 @@ require_once __DIR__ . '/../../config/config.php';
 require_once BASE_PATH . '/config/db.php';
 
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    header('Location: ' . BASE_URL . '/admin/loginPage_admin.php');
+    header('Location: ' . BASE_URL . '/admin/login.php');
+    exit;
+}
+
+// Redirect if user or donor is logged in
+if (!empty($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) {
+    header('Location: ' . BASE_URL . '/user/dashboard.php');
     exit;
 }
 

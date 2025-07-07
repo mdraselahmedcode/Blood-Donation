@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start(); 
 header('Content-Type: application/json'); 
 
@@ -41,7 +41,11 @@ $_SESSION['admin_logged_in'] = true;
 $_SESSION['admin_id'] = $admin['id'];
 $_SESSION['admin_name'] = $admin['first_name'] . ' ' . $admin['last_name'];
 $_SESSION['admin_username'] = $admin['username'];
+$_SESSION['super_admin'] = isset($admin['super_admin']) && $admin['super_admin'] == 1 ? 1 : 0;
+$_SESSION['is_protected'] = isset($admin['is_protected']) && $admin['is_protected'] == 1 ? 1 : 0;  // << Add this line
+
 
 echo json_encode(['success' => true, 'message' => 'Login successful.']);
 exit;
 ?>
+

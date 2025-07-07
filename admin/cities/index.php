@@ -8,6 +8,12 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     exit;
 }
 
+// Redirect if user or donor is logged in
+if (!empty($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true) {
+    header('Location: ' . BASE_URL . '/user/dashboard.php');
+    exit;
+}
+
 require_once BASE_PATH . '/admin/includes/header_admin.php';
 require_once BASE_PATH . '/admin/includes/sidebar_admin.php';
 
