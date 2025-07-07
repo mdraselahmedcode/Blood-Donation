@@ -1,10 +1,11 @@
-<?php 
-  require_once __DIR__ . '/../../config/config.php';
+<?php
+require_once __DIR__ . '/../../config/config.php';
 ?>
+
 <head>
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    
+
     <!-- Internal Sidebar Styles -->
     <style>
         /* Sidebar container */
@@ -32,7 +33,7 @@
             position: relative;
         }
 
-        
+
 
         .sidebar-brand {
             color: #fff;
@@ -121,32 +122,32 @@
                 width: 70px;
                 overflow: hidden;
             }
-            
+
             .sidebar-header {
                 display: none;
             }
-            
+
             .link-text {
                 display: none;
             }
-            
+
             .sidebar-link {
                 justify-content: center;
                 padding: 16px 10px;
                 margin-bottom: 0;
             }
-            
+
             .sidebar-link i {
                 margin-right: 0;
                 font-size: 1.3rem;
             }
-            
+
             .sidebar-link:hover,
             .sidebar-link.active {
                 transform: none;
                 background-color: #b71c1c;
             }
-            
+
             .content {
                 margin-left: 70px;
             }
@@ -161,104 +162,270 @@
 
 
         /* Logo Container */
-.site-logo {
-    padding: 20px 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    margin-bottom: 5px;
-}
+        .site-logo {
+            padding: 20px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 5px;
+        }
 
-/* Logo Link */
-.logo-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: white;
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    transition: all 0.3s ease;
-}
+        /* Logo Link */
+        .logo-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            transition: all 0.3s ease;
+        }
 
-/* Blood Drop Icon */
-.logo-icon {
-    font-size: 2rem;
-    margin-right: 12px;
-    animation: pulse 2s infinite;
-    transform-origin: center;
-}
+        /* Blood Drop Icon */
+        .logo-icon {
+            font-size: 2rem;
+            margin-right: 12px;
+            animation: pulse 2s infinite;
+            transform-origin: center;
+        }
 
-/* Text Part */
-.logo-text {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-}
+        /* Text Part */
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
 
-/* Admin Badge */
-.admin-badge {
-    font-size: 0.75rem;
-    background: rgba(255,255,255,0.15);
-    padding: 3px 8px;
-    border-radius: 12px;
-    margin-left: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+        /* Admin Badge */
+        .admin-badge {
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-left: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-/* Animation */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
+        /* Animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
 
-/* Hover Effects */
-.logo-link:hover {
-    opacity: 0.9;
-}
-.logo-link:hover .logo-icon {
-    animation: none;
-    transform: scale(1.1);
-}
+            50% {
+                transform: scale(1.1);
+            }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .site-logo {
-        padding: 15px 10px;
-    }
-    .logo-text, .admin-badge {
-        display: none;
-    }
-    .logo-icon {
-        margin-right: 0;
-        font-size: 2.2rem;
-    }
-}
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Hover Effects */
+        .logo-link:hover {
+            opacity: 0.9;
+        }
+
+        .logo-link:hover .logo-icon {
+            animation: none;
+            transform: scale(1.1);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .site-logo {
+                padding: 15px 10px;
+            }
+
+            .logo-text,
+            .admin-badge {
+                display: none;
+            }
+
+            .logo-icon {
+                margin-right: 0;
+                font-size: 2.2rem;
+            }
+        }
     </style>
 </head>
-<aside class="sidebar">
-  <div class="site-logo">
-    <a href="<?= BASE_URL ?>/admin/dashboard.php" class="logo-link">
-      <span class="logo-icon">🩸</span>
-      <span class="logo-text">BloodCare</span>
-      <span class="admin-badge">Admin</span>
-    </a>
-  </div>
 
-  
-  <ul class="sidebar-menu">
-    <li><a href="<?= BASE_URL ?>/admin/dashboard.php" class="sidebar-link"><i class="bi bi-speedometer2"></i><span class="link-text">Dashboard</span></a></li>
-    <li><a href="<?= BASE_URL ?>/admin/blood_groups/index.php" class="sidebar-link"><i class="bi bi-droplet"></i><span class="link-text">Blood Groups</span></a></li>
-    <li><a href="<?= BASE_URL ?>/admin/donors/index.php" class="sidebar-link"><i class="bi bi-people-fill"></i><span class="link-text">Donors</span></a></li>
-    <li><a href="<?= BASE_URL ?>/admin/users/index.php" class="sidebar-link"><i class="bi bi-people-fill"></i><span class="link-text">Users</span></a></li>
-    <?php if (!empty($_SESSION['super_admin']) && $_SESSION['super_admin'] == 1): ?>
-        <li><a href="<?= BASE_URL ?>/admin/admins/index.php" class="sidebar-link"><i class="bi bi-people-fill"></i><span class="link-text">Admins</span></a></li>
-    <?php endif; ?>
-    <li><a href="<?= BASE_URL ?>/admin/cities/index.php" class="sidebar-link"><i class="bi bi-building"></i><span class="link-text">Cities</span></a></li>
-    <li><a href="<?= BASE_URL ?>/admin/profile/index.php" class="sidebar-link"><i class="bi bi-building"></i><span class="link-text">Profile</span></a></li>
-    <li><a href="#" class="sidebar-link"><i class="bi bi-inbox-fill"></i><span class="link-text">Requests</span></a></li>
-    <li><a href="#" class="sidebar-link"><i class="bi bi-gear-fill"></i><span class="link-text">Settings</span></a></li>
-    <li class="sidebar-footer"><a href="<?= BASE_URL ?>/admin/php_files/logout_admin_handler.php" class="sidebar-link logout-link"><i class="bi bi-box-arrow-right"></i><span class="link-text">Logout</span></a></li>
-  </ul>
+<!-- <aside class="sidebar">
+    <div class="site-logo">
+        <a href="<?= BASE_URL ?>/admin/dashboard.php" class="logo-link">
+            <span class="logo-icon">🩸</span>
+            <span class="logo-text">BloodCare</span>
+            <span class="admin-badge">Admin</span>
+        </a>
+    </div>
+
+
+    <ul class="sidebar-menu">
+        <li>
+            <a href="<?= BASE_URL ?>/admin/dashboard.php" class="sidebar-link">
+                <i class="bi bi-speedometer2"></i>
+                <span class="link-text">Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="<?= BASE_URL ?>/admin/blood_groups/index.php" class="sidebar-link">
+                <i class="bi bi-droplet-fill"></i>
+                <span class="link-text">Blood Groups</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="<?= BASE_URL ?>/admin/donors/index.php" class="sidebar-link">
+                <i class="bi bi-heart-pulse-fill"></i>
+                <span class="link-text">Donors</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="<?= BASE_URL ?>/admin/users/index.php" class="sidebar-link">
+                <i class="bi bi-person-lines-fill"></i>
+                <span class="link-text">Users</span>
+            </a>
+        </li>
+
+        <?php if (!empty($_SESSION['super_admin']) && $_SESSION['super_admin'] == 1): ?>
+            <li>
+                <a href="<?= BASE_URL ?>/admin/admins/index.php" class="sidebar-link">
+                    <i class="bi bi-person-badge-fill"></i>
+                    <span class="link-text">Admins</span>
+                </a>
+            </li>
+        <?php endif; ?>
+
+        <li>
+            <a href="<?= BASE_URL ?>/admin/cities/index.php" class="sidebar-link">
+                <i class="bi bi-geo-alt-fill"></i>
+                <span class="link-text">Cities</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="<?= BASE_URL ?>/admin/profile/index.php" class="sidebar-link">
+                <i class="bi bi-person-circle"></i>
+                <span class="link-text">Profile</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" class="sidebar-link">
+                <i class="bi bi-inbox-fill"></i>
+                <span class="link-text">Requests</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" class="sidebar-link">
+                <i class="bi bi-gear-fill"></i>
+                <span class="link-text">Settings</span>
+            </a>
+        </li>
+
+        <li class="sidebar-footer">
+            <a href="<?= BASE_URL ?>/admin/php_files/logout_admin_handler.php" class="sidebar-link logout-link">
+                <i class="bi bi-box-arrow-right"></i>
+                <span class="link-text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</aside> -->
+
+
+<aside class="sidebar">
+    <div class="site-logo">
+        <a href="<?= BASE_URL ?>/admin/dashboard.php" class="logo-link">
+            <span class="logo-icon">🩸</span>
+            <span class="logo-text">BloodCare</span>
+            <span class="admin-badge">Admin</span>
+        </a>
+    </div>
+
+    <ul class="sidebar-menu">
+        <li>
+            <a href="<?= BASE_URL ?>/admin/dashboard.php"
+               class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/admin/dashboard.php') !== false ? 'active' : '' ?>">
+                <i class="bi bi-speedometer2"></i>
+                <span class="link-text">Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="<?= BASE_URL ?>/admin/blood_groups/index.php"
+               class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/admin/blood_groups') !== false ? 'active' : '' ?>">
+                <i class="bi bi-droplet-fill"></i>
+                <span class="link-text">Blood Groups</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="<?= BASE_URL ?>/admin/donors/index.php"
+               class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/admin/donors') !== false ? 'active' : '' ?>">
+                <i class="bi bi-heart-pulse-fill"></i>
+                <span class="link-text">Donors</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="<?= BASE_URL ?>/admin/users/index.php"
+               class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/admin/users') !== false ? 'active' : '' ?>">
+                <i class="bi bi-person-lines-fill"></i>
+                <span class="link-text">Users</span>
+            </a>
+        </li>
+
+        <?php if (!empty($_SESSION['super_admin']) && $_SESSION['super_admin'] == 1): ?>
+            <li>
+                <a href="<?= BASE_URL ?>/admin/admins/index.php"
+                   class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/admin/admins') !== false ? 'active' : '' ?>">
+                    <i class="bi bi-person-badge-fill"></i>
+                    <span class="link-text">Admins</span>
+                </a>
+            </li>
+        <?php endif; ?>
+
+        <li>
+            <a href="<?= BASE_URL ?>/admin/cities/index.php"
+               class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/admin/cities') !== false ? 'active' : '' ?>">
+                <i class="bi bi-geo-alt-fill"></i>
+                <span class="link-text">Cities</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="<?= BASE_URL ?>/admin/profile/index.php"
+               class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/admin/profile') !== false ? 'active' : '' ?>">
+                <i class="bi bi-person-circle"></i>
+                <span class="link-text">Profile</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#"
+               class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/admin/requests') !== false ? 'active' : '' ?>">
+                <i class="bi bi-inbox-fill"></i>
+                <span class="link-text">Requests</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#"
+               class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/admin/settings') !== false ? 'active' : '' ?>">
+                <i class="bi bi-gear-fill"></i>
+                <span class="link-text">Settings</span>
+            </a>
+        </li>
+
+        <li class="sidebar-footer">
+            <a href="<?= BASE_URL ?>/admin/php_files/logout_admin_handler.php" class="sidebar-link logout-link">
+                <i class="bi bi-box-arrow-right"></i>
+                <span class="link-text">Logout</span>
+            </a>
+        </li>
+    </ul>
 </aside>

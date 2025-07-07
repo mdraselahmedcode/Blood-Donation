@@ -62,7 +62,9 @@ require_once BASE_PATH . '/admin/includes/sidebar_admin.php';
     <h2>Admin Management</h2>
 
     <a href="<?= BASE_URL ?>/admin/dashboard.php" class="back-button">← Back</a>
-    <a href="<?= BASE_URL ?>/admin/admins/add_admin.php" class="add-donor-btn">+ Add New Admin</a>
+    <?php if ($_SESSION['super_admin'] == 1 && $currentIsProtected == 1): ?>
+        <a href="<?= BASE_URL ?>/admin/admins/add_admin.php" class="add-donor-btn">+ Add New Admin</a>
+    <?php endif; ?>
 
     <div class="scroll-table">
         <table border="1" cellpadding="10" cellspacing="0">
@@ -88,7 +90,8 @@ require_once BASE_PATH . '/admin/includes/sidebar_admin.php';
                         <td colspan="<?= ($_SESSION['super_admin'] == 1 && $currentIsProtected == 1) ? 10 : 9 ?>" style="text-align:center;">No admins found.</td>
                     </tr>
                 <?php else: ?>
-                    <?php $i = 1; foreach ($admins as $admin): ?>
+                    <?php $i = 1;
+                    foreach ($admins as $admin): ?>
                         <tr>
                             <td><?= $i++ ?></td>
                             <td><?= htmlspecialchars($admin['first_name'] . ' ' . $admin['last_name']) ?></td>
@@ -127,60 +130,60 @@ require_once BASE_PATH . '/admin/includes/sidebar_admin.php';
 
 <script src="<?= BASE_URL ?>/vendor/jquery/jquery.min.js"></script>
 <script>
-$(document).ready(function () {
-    <?php if (!empty($message)): ?>
-        $('#showMessage')
-            .text("<?= htmlspecialchars($message) ?>")
-            .css({
-                'background-color': '#e8f5e9',
-                'color': 'green'
-            })
-            .slideDown();
-        setTimeout(() => $('#showMessage').slideUp(), 3000);
-    <?php endif; ?>
+    $(document).ready(function() {
+        <?php if (!empty($message)): ?>
+            $('#showMessage')
+                .text("<?= htmlspecialchars($message) ?>")
+                .css({
+                    'background-color': '#e8f5e9',
+                    'color': 'green'
+                })
+                .slideDown();
+            setTimeout(() => $('#showMessage').slideUp(), 3000);
+        <?php endif; ?>
 
-    $(document).on('submit', '.deleteAdminForm', function (e) {
-        e.preventDefault();
-        const form = $(this);
+        $(document).on('submit', '.deleteAdminForm', function(e) {
+            e.preventDefault();
+            const form = $(this);
 
-        $.ajax({
-            url: '<?= BASE_URL ?>/admin/php_files/sections/admins/delete.php',
-            type: 'POST',
-            data: form.serialize(),
-            dataType: 'json',
-            success: function (res) {
-                $('#showMessage')
-                    .stop(true, true)
-                    .hide()
-                    .text(res.message)
-                    .css({
-                        'background-color': res.success ? '#e8f5e9' : '#ffebee',
-                        'color': res.success ? 'green' : 'red'
-                    })
-                    .slideDown();
+            $.ajax({
+                url: '<?= BASE_URL ?>/admin/php_files/sections/admins/delete.php',
+                type: 'POST',
+                data: form.serialize(),
+                dataType: 'json',
+                success: function(res) {
+                    $('#showMessage')
+                        .stop(true, true)
+                        .hide()
+                        .text(res.message)
+                        .css({
+                            'background-color': res.success ? '#e8f5e9' : '#ffebee',
+                            'color': res.success ? 'green' : 'red'
+                        })
+                        .slideDown();
 
-                if (res.success) {
-                    setTimeout(() => window.location.reload(), 1000);
-                } else {
+                    if (res.success) {
+                        setTimeout(() => window.location.reload(), 1000);
+                    } else {
+                        setTimeout(() => $('#showMessage').slideUp(), 3000);
+                    }
+                },
+                error: function() {
+                    $('#showMessage')
+                        .stop(true, true)
+                        .hide()
+                        .text('Failed to delete admin.')
+                        .css({
+                            'background-color': '#ffebee',
+                            'color': 'red'
+                        })
+                        .slideDown();
+
                     setTimeout(() => $('#showMessage').slideUp(), 3000);
                 }
-            },
-            error: function () {
-                $('#showMessage')
-                    .stop(true, true)
-                    .hide()
-                    .text('Failed to delete admin.')
-                    .css({
-                        'background-color': '#ffebee',
-                        'color': 'red'
-                    })
-                    .slideDown();
-
-                setTimeout(() => $('#showMessage').slideUp(), 3000);
-            }
+            });
         });
     });
-});
 </script>
 
 <?php require_once BASE_PATH . '/admin/includes/footer_admin.php'; ?>

@@ -152,7 +152,7 @@ require_once __DIR__ . '/../config/config.php';
     }
 </style>
 
-<aside class="sidebar">
+<!-- <aside class="sidebar">
     <div class="site-logo">
         <a href="<?= BASE_URL ?>/user/dashboard.php" class="logo-link">
             <span class="logo-icon">🩸</span>
@@ -166,7 +166,7 @@ require_once __DIR__ . '/../config/config.php';
     <ul class="sidebar-menu">
         <li>
             <a href="<?= BASE_URL ?>/user/dashboard.php" class="sidebar-link">
-                <i class="bi bi-house-door"></i>
+                <i class="bi bi-house-door-fill"></i>
                 <span class="link-text">Dashboard</span>
             </a>
         </li>
@@ -174,7 +174,7 @@ require_once __DIR__ . '/../config/config.php';
         <?php if (($_SESSION['user_type'] ?? 'user') === 'donor'): ?>
             <li>
                 <a href="#" class="sidebar-link">
-                    <i class="bi bi-calendar-heart"></i>
+                    <i class="bi bi-droplet-half"></i>
                     <span class="link-text">My Donations</span>
                 </a>
             </li>
@@ -187,7 +187,7 @@ require_once __DIR__ . '/../config/config.php';
             </li>
             <li>
                 <a href="#" class="sidebar-link">
-                    <i class="bi bi-journal-plus"></i>
+                    <i class="bi bi-journal-medical"></i>
                     <span class="link-text">Request Blood</span>
                 </a>
             </li>
@@ -201,7 +201,75 @@ require_once __DIR__ . '/../config/config.php';
                             echo BASE_URL . '/user/receiver/profile.php';
                         }
                         ?>" class="sidebar-link">
-                <i class="bi bi-person-circle"></i>
+                <i class="bi bi-person-vcard-fill"></i>
+                <span class="link-text">Profile</span>
+            </a>
+        </li>
+
+        <li class="sidebar-footer">
+            <a href="<?= BASE_URL ?>/user/php_files/logout_handler.php" class="sidebar-link logout-link">
+                <i class="bi bi-box-arrow-right"></i>
+                <span class="link-text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</aside> -->
+
+<aside class="sidebar">
+    <div class="site-logo">
+        <a href="<?= BASE_URL ?>/user/dashboard.php" class="logo-link">
+            <span class="logo-icon">🩸</span>
+            <span class="logo-text">BloodCare</span>
+            <span class="user-badge">
+                <?= ($_SESSION['user_type'] ?? 'user') === 'donor' ? 'Donor' : 'User' ?>
+            </span>
+        </a>
+    </div>
+
+    <ul class="sidebar-menu">
+        <li>
+            <a href="<?= BASE_URL ?>/user/dashboard.php"
+               class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/user/dashboard.php') !== false ? 'active' : '' ?>">
+                <i class="bi bi-house-door-fill"></i>
+                <span class="link-text">Dashboard</span>
+            </a>
+        </li>
+
+        <?php if (($_SESSION['user_type'] ?? 'user') === 'donor'): ?>
+            <li>
+                <a href="#"
+                   class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/user/donor/my_donations.php') !== false ? 'active' : '' ?>">
+                    <i class="bi bi-droplet-half"></i>
+                    <span class="link-text">My Donations</span>
+                </a>
+            </li>
+        <?php else: ?>
+            <li>
+                <a href="<?= BASE_URL . '/user/receiver/find_donor.php' ?>"
+                   class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/user/receiver/find_donor.php') !== false ? 'active' : '' ?>">
+                    <i class="bi bi-search-heart"></i>
+                    <span class="link-text">Find Donor</span>
+                </a>
+            </li>
+            <li>
+                <a href="#"
+                   class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/user/receiver/request_blood.php') !== false ? 'active' : '' ?>">
+                    <i class="bi bi-journal-medical"></i>
+                    <span class="link-text">Request Blood</span>
+                </a>
+            </li>
+        <?php endif; ?>
+
+        <li>
+            <a href="<?php
+                        if (($_SESSION['user_type'] ?? 'user') === 'donor') {
+                            echo BASE_URL . '/user/donor/profile.php';
+                        } else {
+                            echo BASE_URL . '/user/receiver/profile.php';
+                        }
+                        ?>"
+               class="sidebar-link <?= strpos($_SERVER['REQUEST_URI'], '/user/donor/profile.php') !== false || strpos($_SERVER['REQUEST_URI'], '/user/receiver/profile.php') !== false ? 'active' : '' ?>">
+                <i class="bi bi-person-vcard-fill"></i>
                 <span class="link-text">Profile</span>
             </a>
         </li>
@@ -214,3 +282,4 @@ require_once __DIR__ . '/../config/config.php';
         </li>
     </ul>
 </aside>
+
