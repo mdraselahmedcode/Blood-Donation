@@ -2,7 +2,7 @@
 
 A web-based platform connecting blood donors with recipients, facilitating life-saving donations through an efficient matching system.
 
-> 🚀 **Live Demo**: [https://blood-donation-md-rasel-ahmed.rf.gd/user/signup.php](https://blood-donation-md-rasel-ahmed.rf.gd/user/signup.php)
+> 🚀 **Live Demo**: [https://blood-donation-md-rasel-ahmed.rf.gd/](https://blood-donation-md-rasel-ahmed.rf.gd/)
 
 > ⚠️ **Note:** Some browsers like **Google Chrome** may show a security warning due to the free hosting domain (`*.rf.gd`) being flagged.  
 > We recommend opening the site using **Microsoft Edge** or any browser that does not block access to `.rf.gd` subdomains.
