@@ -2,6 +2,25 @@
 
 A web-based platform connecting blood donors with recipients, facilitating life-saving donations through an efficient matching system.
 
+> 🚀 **Live Demo**: [https://blood-donation-md-rasel-ahmed.rf.gd/](https://blood-donation-md-rasel-ahmed.rf.gd/)
+
+> ⚠️ **Note:** Some browsers like **Google Chrome** may show a security warning due to the free hosting domain (`*.rf.gd`) being flagged.  
+> We recommend opening the site using **Microsoft Edge** or any browser that does not block access to `.rf.gd` subdomains.
+
+---
+
+## 🔐 Admin Login
+
+To explore the admin dashboard, you can log in with the following credentials:
+
+- **Email:** `rasel123@gmail.com`
+- **Username:** `rasel123`  
+- **Password:** `password!123`
+
+- **Admin Login URL:** [https://blood-donation-md-rasel-ahmed.rf.gd/admin/login.php](https://blood-donation-md-rasel-ahmed.rf.gd/admin/login.php)
+
+---
+
 ## 🌟 Features
 
 - **Dual User System**:
@@ -19,6 +38,8 @@ A web-based platform connecting blood donors with recipients, facilitating life-
   - Role-based access control
   - Secure authentication
 
+---
+
 ## 🛠️ Technology Stack
 
 - **Frontend**: HTML5, CSS3, JavaScript, jQuery, Ajax
@@ -28,6 +49,3 @@ A web-based platform connecting blood donors with recipients, facilitating life-
 - **Dependencies**:
   - Font Awesome (icons)
   - Google Fonts (Poppins)
-
-
-
