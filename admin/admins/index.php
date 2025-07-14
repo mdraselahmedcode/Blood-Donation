@@ -62,7 +62,8 @@ require_once BASE_PATH . '/admin/includes/sidebar_admin.php';
     <h2>Admin Management</h2>
 
     <a href="<?= BASE_URL ?>/admin/dashboard.php" class="back-button">← Back</a>
-    <?php if ($_SESSION['super_admin'] == 1 && $currentIsProtected == 1): ?>
+    <?php if ($_SESSION['super_admin'] == 1 ): ?>
+        <!-- && $currentIsProtected == 1 -->
         <a href="<?= BASE_URL ?>/admin/admins/add_admin.php" class="add-donor-btn">+ Add New Admin</a>
     <?php endif; ?>
 

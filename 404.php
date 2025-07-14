@@ -1,5 +1,7 @@
 <?php
 session_start();
+include __DIR__ . '/config/config.php';
+
 // Set proper 404 header
 header("HTTP/1.0 404 Not Found");
 ?>
@@ -9,7 +11,7 @@ header("HTTP/1.0 404 Not Found");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Not Found | BloodConnect</title>
-    <link rel="stylesheet" href="/blood-donate/assets/css/error.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/error.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -24,10 +26,10 @@ header("HTTP/1.0 404 Not Found");
                     <i class="fas fa-exclamation-triangle"></i> The requested admin resource was not found.
                 </p>
                 <div class="error-actions">
-                    <a href="/blood-donate/admin/dashboard" class="btn btn-primary">
+                    <a href="<?= BASE_URL ?>/admin/dashboard" class="btn btn-primary">
                         <i class="fas fa-tachometer-alt"></i> Admin Dashboard
                     </a>
-                    <a href="/blood-donate/admin/php_files/logout_admin_handler.php" class="btn btn-secondary">
+                    <a href="<?= BASE_URL ?>/admin/php_files/logout_admin_handler.php" class="btn btn-secondary">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                 </div>
@@ -42,15 +44,15 @@ header("HTTP/1.0 404 Not Found");
                     <?php endif; ?>
                 </p>
                 <div class="error-actions">
-                    <a href="/blood-donate/user/dashboard" class="btn btn-primary">
+                    <a href="<?= BASE_URL ?>/user/dashboard" class="btn btn-primary">
                         <i class="fas fa-home"></i> My Dashboard
                     </a>
                     <?php if ($_SESSION['is_donor']) : ?>
-                        <a href="/blood-donate/user/donor/profile" class="btn btn-secondary">
+                        <a href="<?= BASE_URL ?>/user/donor/profile" class="btn btn-secondary">
                             <i class="fas fa-user-edit"></i> Donor Profile
                         </a>
                     <?php else : ?>
-                        <a href="/blood-donate/user/receiver/find_donor" class="btn btn-secondary">
+                        <a href="<?= BASE_URL ?>/user/receiver/find_donor" class="btn btn-secondary">
                             <i class="fas fa-search"></i> Find Donor
                         </a>
                     <?php endif; ?>
@@ -62,14 +64,14 @@ header("HTTP/1.0 404 Not Found");
                     The page you're looking for doesn't exist or has been moved.
                 </p>
                 <div class="error-actions">
-                    <a href="/blood-donate/" class="btn btn-primary">
+                    <a href="<?= BASE_URL ?>" class="btn btn-primary">
                         <i class="fas fa-home"></i> Return Home
                     </a>
                     <div class="auth-buttons">
-                        <a href="/blood-donate/user/login" class="btn btn-secondary">
+                        <a href="<?= BASE_URL ?>/user/login" class="btn btn-secondary">
                             <i class="fas fa-sign-in-alt"></i> Login
                         </a>
-                        <a href="/blood-donate/user/signup" class="btn btn-secondary">
+                        <a href="<?= BASE_URL ?>/user/signup" class="btn btn-secondary">
                             <i class="fas fa-user-plus"></i> Sign Up
                         </a>
                     </div>

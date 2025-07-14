@@ -114,9 +114,9 @@ if ($result && $row = $result->fetch_assoc()) {
             <div class="team-grid">
                 <div class="team-member">
                     <div class="member-image">
-                        <img src="<?= BASE_URL ?>/assets/images/girl.jpg" alt="Team member">
+                        <img src="<?= BASE_URL ?>/assets/images/her.jpg" alt="Team member">
                     </div>
-                    <h3>Dr. Ayesha Rahman</h3>
+                    <h3>Farhana Islam</h3>
                     <p class="position">Medical Director</p>
                     <p class="bio">Hematology specialist with 15 years experience in blood bank management.</p>
                     <div class="social-links">
@@ -129,7 +129,7 @@ if ($result && $row = $result->fetch_assoc()) {
                     <div class="member-image">
                         <img src="<?= BASE_URL ?>/assets/images/team-member2.jpeg" alt="Team member">
                     </div>
-                    <h3>Md Rasel Ahmed</h3>
+                    <h3>MD Rasel Ahmed</h3>
                     <p class="position">Founder & Developer</p>
                     <p class="bio">Software engineer passionate about creating life-saving solutions.</p>
                     <div class="social-links">

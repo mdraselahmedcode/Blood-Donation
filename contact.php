@@ -79,7 +79,8 @@ require_once BASE_PATH . '/includes/header.php';
             </div>
             <div class="info-content">
               <h3>Call Us</h3>
-              <a href="tel:+8801929951023">+880 1929 951023</a>
+              <!-- <a href="tel:+8801929951023">+880 1929 951023</a> -->
+              <a href="tel:+01929951023">+01929951023</a>
               <p>Monday-Friday, 9am-5pm</p>
             </div>
           </div>
