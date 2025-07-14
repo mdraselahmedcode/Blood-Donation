@@ -17,9 +17,6 @@ To explore the admin dashboard, you can log in with the following credentials:
 - **Username:** `rasel123`  
 - **Password:** `password!123`
 
-- **Email:** `shehbaj123@gmail.com`
-- **Username:** `shehbaj123`  
-- **Password:** `password!123`
 - **Admin Login URL:** [https://blood-donation-md-rasel-ahmed.rf.gd/admin/login.php](https://blood-donation-md-rasel-ahmed.rf.gd/admin/login.php)
 
 ---
