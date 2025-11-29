@@ -67,7 +67,7 @@ To explore the admin dashboard, you can log in with the following credentials:
 
 ![Blood Donation App Screenshot](https://github.com/mdraselahmedcode/Blood-Donation/blob/main/admin_admins.png?raw=true)
 
-![Blood Donation App Screenshot](https://github.com/mdraselahmedcode/Blood-Donation/blob/main/admin_profile)
+![Blood Donation App Screenshot](https://github.com/mdraselahmedcode/Blood-Donation/blob/main/admin_profilepng?raw=true)
 
 
 
