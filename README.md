@@ -49,3 +49,7 @@ To explore the admin dashboard, you can log in with the following credentials:
 - **Dependencies**:
   - Font Awesome (icons)
   - Google Fonts (Poppins)
+
+ ## Screenshots
+![Blood Donation App Screenshot](https://github.com/mdraselahmedcode/Blood-Donation/blob/main/home.png?raw=true)
+
