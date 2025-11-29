@@ -9,6 +9,7 @@ A web-based platform connecting blood donors with recipients, facilitating life-
 
 ---
 
+<!--
 ## 🔐 Admin Login
 
 To explore the admin dashboard, you can log in with the following credentials:
@@ -18,6 +19,7 @@ To explore the admin dashboard, you can log in with the following credentials:
 - **Password:** `password!123`
 
 - **Admin Login URL:** [https://blood-donation-md-rasel-ahmed.rf.gd/admin/login.php](https://blood-donation-md-rasel-ahmed.rf.gd/admin/login.php)
+-->
 
 ---
 
@@ -65,6 +67,7 @@ To explore the admin dashboard, you can log in with the following credentials:
 
 ![Blood Donation App Screenshot](https://github.com/mdraselahmedcode/Blood-Donation/blob/main/admin_admins.png?raw=true)
 
+![Blood Donation App Screenshot](https://github.com/mdraselahmedcode/Blood-Donation/blob/main/admin_profile)
 
 
 
